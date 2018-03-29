@@ -7,6 +7,7 @@
  */
 Ext.define('Tf.main.Main', {
     extend: 'Ext.panel.Panel',
+    ui: 'test-ui',
     xtype: 'app-main',
 
     title: 'Hello',
