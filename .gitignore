@@ -3,5 +3,3 @@ ext
 build
 *.iml
 *.log
-bootstrap.json
-bootstrap.jsonp
