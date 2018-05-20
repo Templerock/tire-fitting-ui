@@ -5,6 +5,10 @@ Ext.define('Tf.Application', {
 
     name: 'TireFittingUI',
 
+    stores: [
+        'Tf.store.Test'
+    ],
+
     launch: function () {
         var myCookie = Ext.util.Cookies.get('myCookie'); //TODO change to actual cookie after REST integration
        if (myCookie) {

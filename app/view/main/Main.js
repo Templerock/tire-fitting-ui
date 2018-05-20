@@ -3,15 +3,15 @@ Ext.define('Tf.view.main.Main', {
     autoShow: true,
     closable: false,
     controller: 'main',
-    id: 'mainWindow',
+    id: 'main',
+    xtype: 'main',
     requires: [
         'Ext.Button'
     ],
 
     items: [{
+
         title: 'Home page',
         html: '<h1 class="main-banner">Welcome to the Tire Fitting service</h1>',
-    }
-
-    ]
+    }]
 });

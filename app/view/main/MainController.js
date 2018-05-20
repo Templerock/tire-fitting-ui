@@ -23,14 +23,13 @@ Ext.define('Tf.view.main.MainController', {
     },
 
     setCurrentView : function(node){
-        var mainWindow = Ext.getCmp('mainWindow');
-        mainWindow.removeAll();
+        var mainWindow = Ext.getCmp('main');
+          mainWindow.removeAll();
         try {
             mainWindow.add(Ext.create({xtype: node}));
         }
         catch (err) {
             Ext.Msg.alert('Error!', 'wrong route');
-
         }
     },
 
