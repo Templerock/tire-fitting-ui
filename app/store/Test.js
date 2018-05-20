@@ -5,7 +5,7 @@ Ext.define('Tf.store.Test', {
     autoSync: true,
    id: 'test',
    storeId: 'test',
-    model: 'Test',
+    model: 'Tf.model.Test',
     // proxy: {
     //     type: 'rest',
     //     url: 'http://localhost:8080/status',
