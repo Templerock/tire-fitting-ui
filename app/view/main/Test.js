@@ -5,7 +5,6 @@ Ext.define('Tf.view.main.Test', {
     controller: 'main',
     id: 'test',
     xtype: 'test',
-    store: 'Tf.store.Test',
 
     viewModel: {
         data: {
@@ -24,6 +23,7 @@ Ext.define('Tf.view.main.Test', {
             frame: true,
             title: 'Statuses',
             iconCls: 'icon-user',
+            store: 'test',
             columns: [{
                 text: 'STATUS ID',
                 width: 100,

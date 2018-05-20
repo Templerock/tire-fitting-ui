@@ -1,11 +1,12 @@
 Ext.define('Tf.store.Test', {
+    requires: [
+        'Tf.model.Test'
+    ],
     extend: 'Ext.data.Store',
     alias: 'store.Test',
-    autoLoad: true,
-    autoSync: true,
-   id: 'test',
-   storeId: 'test',
-    model: 'Test',
+
+    storeId: 'test',
+    model: 'Tf.model.Test',
     // proxy: {
     //     type: 'rest',
     //     url: 'http://localhost:8080/status',
