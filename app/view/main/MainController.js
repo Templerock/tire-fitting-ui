@@ -27,6 +27,7 @@ Ext.define('Tf.view.main.MainController', {
           mainWindow.removeAll();
         try {
             mainWindow.add(Ext.create({xtype: node}));
+            this.loadStore('test');
         }
         catch (err) {
             Ext.Msg.alert('Error!', 'wrong route');
@@ -62,7 +63,17 @@ Ext.define('Tf.view.main.MainController', {
 
     onServiceClick: function () {
         this.redirectTo('service');
+    },
+
+    loadStore: function (store) {
+      var  task = {
+            run: function() {
+                    Ext.getStore(store).load();
+            },
+            interval: 1000
+        };
+      debugger;
+        Ext.TaskManager.start(task);
+
     }
-
-
 });

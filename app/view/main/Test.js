@@ -35,7 +35,10 @@ Ext.define('Tf.view.main.Test', {
                 sortable: true,
                 dataIndex: 'statusName',
             }]
-    }]
+    }],
+    // listeners: {
+    //     render: {fn: 'loadStore', args: ['store']}
+    // }
 });
 
 
