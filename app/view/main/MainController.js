@@ -1,6 +1,7 @@
 Ext.define('Tf.view.main.MainController', {
     extend : 'Ext.app.ViewController',
     alias : 'controller.main',
+    id: 'mainContr',
     listen : {
         controller : {
             '#' : {
@@ -26,10 +27,12 @@ Ext.define('Tf.view.main.MainController', {
         var mainWindow = Ext.getCmp('main');
           mainWindow.removeAll();
         try {
+            // this.loadStore('user');
             mainWindow.add(Ext.create({xtype: node}));
             // this.loadStore('test');
         }
         catch (err) {
+            debugger;
             Ext.Msg.alert('Error!', 'wrong route');
         }
     },
@@ -121,12 +124,14 @@ Ext.define('Tf.view.main.MainController', {
             },
 
             success: function(){
-                debugger;
                 Ext.util.Cookies.set(authorization.data.userId>0 ? 'user' : 'service', login);
+                window.location.hash = authorization.data.userId>0 ? 'user' : 'service'
+
+            },
+            callback: function(){
+
             }
         });
-        debugger;
-        this.redirectTo(authorization.data.userId ? 'user' : 'service');
     },
 
     onRegisterClick : function () {

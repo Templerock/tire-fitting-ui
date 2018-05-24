@@ -6,7 +6,10 @@ Ext.define('Tf.Application', {
     name: 'TireFittingUI',
 
     stores: [
-        'Tf.store.Test'
+        'Tf.store.Test',
+        'Tf.store.User',
+        'Tf.store.Order',
+        'Tf.store.Service'
     ],
 
     launch: function () {
