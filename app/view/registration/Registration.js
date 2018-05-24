@@ -26,19 +26,23 @@ Ext.define('Tf.view.registration.Registration', {
         xtype: 'textfield',
         label: 'Login',
         bind: '{login}',
-        fieldLabel: 'Login'
+        fieldLabel: 'Login',
+        reference: 'regLogField'
     },{
         xtype: 'textfield',
         label: 'Password',
         inputType: 'password',
         bind:  '{password}',
-        fieldLabel: 'Password'
+        fieldLabel: 'Password',
+        reference: 'regPassField'
+
     },{
         xtype: 'textfield',
         label: 'Password',
         inputType: 'password',
         bind:  '{repeatPassword}',
-        fieldLabel: 'Repeat password'
+        fieldLabel: 'Repeat password',
+        reference: 'regPassRepField'
     }, {
         xtype: 'button',
         handler: 'onRegistration',
@@ -72,18 +76,27 @@ Ext.define('Tf.view.registration.Registration', {
             items:[{
                 xtype: 'textfield',
                 bind: {
-                    fieldLabel: '{radioUser ? "User" : "Service"} Data'
-                }
+                    fieldLabel: '{radioUser ? "User name" : "Service name"}'
+                },
+                reference: 'regFieldOne'
             },{
                 xtype: 'textfield',
                 bind: {
-                    fieldLabel: '{radioUser ? "User" : "Service"} Data'
-                }
+                    fieldLabel: '{radioUser ? "Car brand" : "Location"}'
+                },
+                reference: 'regFieldTwo'
             },{
                 xtype: 'textfield',
                 bind: {
-                    fieldLabel: '{radioUser ? "User" : "Service"} Data'
-                }
+                    fieldLabel: '{radioUser ? "Tire radius" : "Serving staff"}'
+                },
+                reference: 'regFieldThree'
+            },{
+                xtype: 'textfield',
+                bind: {
+                    fieldLabel: '{radioUser ? "Tire type" : "Rating"}'
+                },
+                reference: 'regFieldFour'
             },{
                 xtype: 'button',
                 handler: 'onLoginClick',

@@ -10,12 +10,13 @@ Ext.define('Tf.Application', {
     ],
 
     launch: function () {
-        var myCookie = Ext.util.Cookies.get('myCookie'); //TODO change to actual cookie after REST integration
-       if (myCookie) {
-            this.redirectTo(myCookie);
+        var userCookie = Ext.util.Cookies.get('user'); //TODO change to actual cookie after REST integration
+        var serviceCookie = Ext.util.Cookies.get('service');
+       if (!(userCookie||serviceCookie)) {
+            this.redirectTo('login');
        }
        else {
-           this.redirectTo('login');
+           this.redirectTo(userCookie ? 'user' : 'service');
        }
     },
 

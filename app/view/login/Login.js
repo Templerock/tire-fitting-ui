@@ -20,7 +20,8 @@ Ext.define('Tf.view.login.Login', {
         xtype: 'textfield',
         label: 'Login',
         bind: '{login}',
-        fieldLabel: 'Login'
+        fieldLabel: 'Login',
+        reference: 'logLogin'
     },{
         xtype: 'textfield',
         label: 'Password',
@@ -29,7 +30,8 @@ Ext.define('Tf.view.login.Login', {
         listeners: {
             action: 'onLogin'
         },
-        fieldLabel: 'Password'
+        fieldLabel: 'Password',
+        reference: 'logPass'
     },{
         xtype: 'button',
         handler: 'onLogin',

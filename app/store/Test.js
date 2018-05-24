@@ -7,6 +7,7 @@ Ext.define('Tf.store.Test', {
     autoLoad: true,
     autoSync: true,
     cors: true,
+    controller: 'main',
     storeId: 'test',
     model: 'Tf.model.Test',
     proxy: {
@@ -20,4 +21,18 @@ Ext.define('Tf.store.Test', {
             type: 'json'
         }
     },
+    listeners: {
+        load: {
+            fn: function (store) {
+                var task = {
+                    run: function () {
+                        Ext.getStore(store).load();
+                    },
+                    interval: 30000
+                };
+                Ext.TaskManager.start(task);
+            },
+            single: true
+        }
+    }
 });
