@@ -1,15 +1,8 @@
 Ext.define('Tf.view.registration.Registration', {
-  extend: 'Ext.window.Window',
-  autoShow: true,
-  closable: false,
+  extend: 'Ext.panel.Panel',
   controller: 'main',
   id: 'registrationWindow',
   title: 'Registration page',
-  requires: [
-    'Ext.Button',
-    'Ext.form.*',
-
-  ],
   xtype: 'registration',
   viewModel: {
     data: {
@@ -17,7 +10,6 @@ Ext.define('Tf.view.registration.Registration', {
       password: '',
       repeatPassword: '',
       radioUser: true,
-      radioService: ''
     }
   },
   layout: 'column',
@@ -44,13 +36,6 @@ Ext.define('Tf.view.registration.Registration', {
       fieldLabel: 'Repeat password',
       reference: 'regPassRepField'
     }, {
-      xtype: 'button',
-      handler: 'onRegistration',
-      bind: {
-        disabled: '{!password||!login||!repeatPassword||(password!=repeatPassword)}',
-        text: 'Register'
-      }
-    }, {
       xtype: 'fieldcontainer',
       fieldLabel: 'Size',
       defaultType: 'radiofield',
@@ -70,7 +55,14 @@ Ext.define('Tf.view.registration.Registration', {
           id: 'radioServiceButton',
           bind: 'radioService'
         }]
-    }],
+    },  {
+        xtype: 'button',
+        handler: 'onRegistration',
+        bind: {
+            disabled: '{!password||!login||!repeatPassword||(password!=repeatPassword)}',
+            text: 'Register'
+        }
+    }]
   }, {
     items: [{
       items: [{

@@ -5,16 +5,19 @@ Ext.define('Tf.view.main.MainController', {
   listen: {
     controller: {
       '#': {
-
         unmatchedroute: 'onRouteChange'
       }
-    }
+    },
+      store: {
+          '*': {
+              load: 'loadStore',
+              single: true
+          }
+      }
   },
   routes: {
     ':node': 'onRouteChange'
   },
-
-  requires: [],
 
   onRouteChange: function (node) {
     node = (node || '').toLowerCase();
@@ -25,9 +28,7 @@ Ext.define('Tf.view.main.MainController', {
     var mainWindow = Ext.getCmp('main');
     mainWindow.removeAll();
     try {
-      // this.loadStore('user');
-      mainWindow.add(Ext.create({xtype: node}));
-      // this.loadStore('test');
+      mainWindow.add({xtype: node});
     }
     catch (err) {
       debugger;

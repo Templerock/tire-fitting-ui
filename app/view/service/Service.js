@@ -1,31 +1,16 @@
 Ext.define('Tf.view.service.Service', {
   extend: 'Ext.tab.Panel',
   xtype: 'service',
-  requires: [
-    // 'Ext.Button',
-    // 'Ext.field.Text'
-  ],
-
-  viewModel: {
-    data: {
-      //TODO REST integration
-    }
-  },
-
   items: [{
     title: 'Service info',
     layout: 'fit',
     items: [{
       xtype: 'gridpanel',
-      renderTo: document.body,
-      layout: 'fit',
-      frame: true,
       title: 'Service info',
-      iconCls: 'icon-user',
       store: 'service',
       columns: [{
         text: 'Service ID',
-        width: 100,
+        width: 75,
         sortable: true,
         dataIndex: 'serviceId'
       }, {

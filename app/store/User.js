@@ -13,22 +13,8 @@ Ext.define('Tf.store.User', {
     type: 'rest',
     url: 'http://localhost:8080/user',
   },
-  listeners: {
-    load: { //TODO move listener to Controller
-      fn: function (store) {
-        var task = {
-          run: function () {
-            Ext.getStore(store).load();
-          },
-          interval: 30000
-        };
-        Ext.TaskManager.start(task);
-      },
-      single: true
-    }
-  },
   filters: [{
-    property: 'name',
+    property: 'userId',
     value: Ext.util.Cookies.get('user')
   }]
 });
