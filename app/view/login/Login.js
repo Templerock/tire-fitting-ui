@@ -1,16 +1,37 @@
 Ext.define('Tf.view.login.Login', {
   extend: 'Ext.panel.Panel',
-  controller: 'main',
+    controller: 'main',
+    style: {margin: '100px 0 0 750px', display: 'inline-block'},
+    bodyPadding: 50,
+    requires: [
+        'Ext.Button',
+        'Ext.form.*'
+    ],
+
   xtype: 'login',
   id: 'loginWindow',
-  title: 'Login page',
+  // title: 'Login page',
+    title: 'Tire-fitting',
   viewModel: {
     data: {
       login: '',
       password: '',
     }
   },
-  items: [{
+
+  items: [
+      {},
+
+      {
+          xtype: 'image',
+          src: '/app/img/arg.png',
+          width: 184,
+          height: 90,
+      },
+
+
+
+      {
       xtype: 'textfield',
       label: 'Login',
       bind: '{login}',
@@ -28,6 +49,10 @@ Ext.define('Tf.view.login.Login', {
       reference: 'logPass'
   }, {
       xtype: 'button',
+      x:0,
+      y:0,
+      width:70,
+      height:30,
       handler: 'onLogin',
       bind: {
           disabled: '{!password||!login}',
@@ -36,6 +61,8 @@ Ext.define('Tf.view.login.Login', {
   },
       {
           xtype: 'button',
+          x:50,
+          y:0,
           handler: 'onRegisterClick',
           text: 'Registration'
       }]
