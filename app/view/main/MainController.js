@@ -99,7 +99,7 @@ Ext.define('Tf.view.main.MainController', {
       });
 
     }
-    Ext.util.Cookies.set(url, login);
+    // Ext.util.Cookies.set(url, login);
     this.redirectTo(url);
 
   },
@@ -120,13 +120,10 @@ Ext.define('Tf.view.main.MainController', {
         password: password
       },
       success: function () {
-        Ext.util.Cookies.set(authorization.data.userId > 0 ? 'user' : 'service',
-            login);
+        // Ext.util.Cookies.set(authorization.data.userId > 0 ? 'user' : 'service',
+        //     login);
         window.location.hash = authorization.data.userId > 0 ? 'user'
             : 'service'
-      },
-      callback: function () {
-
       }
     });
   },
