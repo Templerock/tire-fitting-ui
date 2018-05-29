@@ -18,27 +18,29 @@ Ext.define('Tf.view.login.Login', {
                     layout: {
                         type: 'vbox',
                         pack: 'start',
+                        // align: 'stretch'
                         align: 'center'
                     },
 
-                    margin: '120px 10px 10px 10px',
+                    margin: '30px 10px 0px 0px',
                     items: [
                     {
                         xtype: 'image',
                         src: '/app/img/arg.png',
-                        width: 700,
-                        height: 400,
+                        // layout: 'fit',
+                        width: 320,
+                        height: 300,
                     },
                     {
                         xtype: 'textfield',
-                        padding: '10px 50px 10px 50px',
+                        padding: '0px 0px 0px 10px',
                         label: 'Login',
                         bind: '{login}',
                         fieldLabel: 'Login',
                         reference: 'logLogin',
                     }, {
                         xtype: 'textfield',
-                            padding: '10px 50px 10px 50px',
+                            padding: '10px 0px 0px 10px',
                         label: 'Password',
                         inputType: 'password',
                         bind: '{password}',
@@ -51,7 +53,7 @@ Ext.define('Tf.view.login.Login', {
                         xtype: 'button',
                             width: 276,
                             align: 'stretch',
-                            margin: '10px 10px 10px 10px',
+                            margin: '10px 0px 0px 10px',
                         handler: 'onLogin',
                         bind: {
                             disabled: '{!password||!login}',
@@ -61,7 +63,7 @@ Ext.define('Tf.view.login.Login', {
                     {xtype: 'button',
                         width: 276,
                         align: 'stretch',
-                        margin: '10px 10px 10px 10px',
+                        margin: '10px 0px 0px 10px',
                         handler: 'onRegisterClick',
                         text: 'Registration'
                     }]
