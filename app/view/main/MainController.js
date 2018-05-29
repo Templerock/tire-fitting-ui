@@ -102,8 +102,7 @@ Ext.define('Tf.view.main.MainController', {
     }
     // Ext.util.Cookies.set(url, login);
     this.redirectTo(url);
-
-  },
+        },
 
   onLogin: function () {
     var login = this.lookupReference('logLogin').getValue(),
@@ -150,7 +149,7 @@ Ext.define('Tf.view.main.MainController', {
       run: function () {
         Ext.getStore(store).load();
       },
-      interval: 30000
+      // interval: 30000
     };
     Ext.TaskManager.start(task);
 

@@ -13,8 +13,8 @@ Ext.define('Tf.store.User', {
     type: 'rest',
     url: 'http://localhost:8080/user',
   },
-  filters: [{
-    property: 'userId',
-    value: Ext.util.Cookies.get('user')
-  }]
+  // filters: [{
+  //   property: 'userId',
+  //   value: Ext.util.Cookies.get('user')
+  // }]
 });

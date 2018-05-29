@@ -1,18 +1,22 @@
 Ext.define('Tf.view.user.User', {
   extend: 'Ext.tab.Panel',
   xtype: 'user',
+    title: 'User',
   controller: 'main',
   id: 'user',
-  layout: 'fit',
+  layout: 'column',
+
     items: [{
         title: 'User info',
+        padding: '50px 250px 0px 250px',
         items: [{
             xtype: 'gridpanel',
+            frame: true,
             title: 'User info',
             store: 'user',
             columns: [{
                 text: 'User ID',
-                width: 75,
+                width: 130,
                 sortable: true,
                 dataIndex: 'userId'
             }, {
@@ -44,14 +48,19 @@ Ext.define('Tf.view.user.User', {
 
         }, {
             xtype: 'button',
+            margin: '20px 0 0 1300px',
+            // x:1300,
+            // y:30,
             text: 'Go back to Login',
             handler: 'onLoginClick'
 
         }]
     }, {
         title: 'User orders',
+        padding: '50px 250px 0px 250px',
         items: [{
             xtype: 'gridpanel',
+            frame: true,
             title: 'User orders',
             store: 'order',
             columns: [{
@@ -89,6 +98,8 @@ Ext.define('Tf.view.user.User', {
         }, {
           xtype: 'button',
           text: 'Go back to Login',
+            x:1300,
+            y:30,
           handler: 'onLoginClick'
         }]
     }]
