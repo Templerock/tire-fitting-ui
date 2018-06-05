@@ -44,25 +44,27 @@ Ext.define('Tf.view.login.Login', {
                 label: 'Password',
                 inputType: 'password',
                 bind: '{password}',
-                enablekeyEvents: true,
-                listeners: {
-                    action: 'onLogin',
-                },
+                // listeners: {
+                //     specialkey: function(f,e){
+                //         if(e.getKey() == e.ENTER){
+                //             console.log('Spacial Key = Enter');
+                //         }
+                //     }
+                // },
                 fieldLabel: 'Password',
                 reference: 'logPass'
             },  {
                 xtype: 'button',
-                // id: 'login',
                 scale: 'medium',
                 margin: '10 0',
                 align: 'stretch',
                 handler: 'onLogin',
                 // listeners: {
                 //     show: function() {
-                //         new Ext.KeyMap(Ext.getCmp('Tf.view.login.Login').body, [{
+                //         new Ext.KeyMap(Ext.getCmp('loginWindow').body, [{
                 //             key: Ext.EventObject.ENTER,
                 //             fn: function() {
-                //                 Ext.getCmp('Tf.view.login.Login-onLogin').fireEvent('click');
+                //                 Ext.getCmp('onLogin').fireEvent('click');
                 //             },
                 //             scope: this
                 //         }]);
@@ -82,58 +84,6 @@ Ext.define('Tf.view.login.Login', {
             }]
     }]
 
-
-                // xtype : 'container',
-                //     layout: {
-                //         type: 'vbox',
-                //         pack: 'start',
-                //         // align: 'stretch'
-                //         align: 'center'
-                //     },
-                //
-                //     margin: '30px 10px 0px 0px',
-                //     items: [
-                //     {
-                //         xtype: 'image',
-                //         src: '/app/img/arg.png',
-                //         // layout: 'fit',
-                //         width: 320,
-                //         height: 300,
-                //     },
-                //     {
-                //         xtype: 'textfield',
-                //         padding: '0px 0px 0px 10px',
-                //         label: 'Login',
-                //         bind: '{login}',
-                //         fieldLabel: 'Login',
-                //         reference: 'logLogin',
-                //     }, {
-                //         xtype: 'textfield',
-                //             padding: '10px 0px 0px 10px',
-                //         label: 'Password',
-                //         inputType: 'password',
-                //         bind: '{password}',
-                //         listeners: {
-                //             action: 'onLogin'
-                //         },
-                //         fieldLabel: 'Password',
-                //         reference: 'logPass'
-                //     }, {
-                //         xtype: 'button',
-                //             width: 276,
-                //             align: 'stretch',
-                //             margin: '10px 0px 0px 10px',
-                //         handler: 'onLogin',
-                //         bind: {
-                //             disabled: '{!password||!login}',
-                //             text: 'Login'
-                //         }
-                //     },
-                //     {xtype: 'button',
-                //         width: 276,
-                //         align: 'stretch',
-                //         margin: '10px 0px 0px 10px',
-                //         handler: 'onRegisterClick',
-                //         text: 'Registration'
-                //     }]
 });
+// var myform = Ext.getCmp('loginWindow');
+//     myForm.getForm().submit();
