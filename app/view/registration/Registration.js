@@ -13,20 +13,20 @@ Ext.define('Tf.view.registration.Registration', {
     }
   },
     layout: 'center',
-    bodyPadding: '50 10',
     items: [{
-        xtype: 'container',
+        xtype: 'panel',
+        bodyPadding: '10 10',
         title: 'Registration form',
         scrollable: true,
-        width: 400,
+        width: 300,
         layout: {
             type: 'vbox',
             pack: 'start',
             align: 'stretch'
         },
-        bodyPadding: '20 10',
         items: [{
             xtype: 'textfield',
+            margin: '10 0',
             label: 'Login',
             bind: '{login}',
             fieldLabel: 'Login',
@@ -35,6 +35,7 @@ Ext.define('Tf.view.registration.Registration', {
             border: true
         }, {
             xtype: 'textfield',
+            margin: '10 0',
             label: 'Password',
             inputType: 'password',
             bind: '{password}',
@@ -44,6 +45,7 @@ Ext.define('Tf.view.registration.Registration', {
             border: true
         },{
             xtype: 'textfield',
+            margin: '10 0',
             label: 'Password',
             inputType: 'password',
             bind: '{repeatPassword}',
@@ -53,6 +55,7 @@ Ext.define('Tf.view.registration.Registration', {
             border: true
         }, {
             xtype: 'fieldcontainer',
+            margin: '10 0',
             fieldLabel: '',
             defaultType: 'radiofield',
             defaults: {
@@ -62,7 +65,7 @@ Ext.define('Tf.view.registration.Registration', {
                 items: [
                   {
                     boxLabel: 'User',
-                    margin: '0 50 0 100',
+                    margin: '0 50 0 50',
                     name: 'user',
                     id: 'radioUserButton',
                     bind: '{radioUser}'
@@ -74,24 +77,28 @@ Ext.define('Tf.view.registration.Registration', {
                   }]
             }, {
                   xtype: 'textfield',
+            margin: '10 0',
                   bind: {
                     fieldLabel: '{radioUser ? "User name" : "Service name"}'
                   },
                   reference: 'regFieldOne'
                 }, {
                   xtype: 'textfield',
+            margin: '10 0',
                   bind: {
                     fieldLabel: '{radioUser ? "Car brand" : "Location"}'
                   },
                   reference: 'regFieldTwo'
                 }, {
                   xtype: 'textfield',
+            margin: '10 0',
                   bind: {
                     fieldLabel: '{radioUser ? "Tire radius" : "Serving staff"}'
                   },
                   reference: 'regFieldThree'
                 }, {
                   xtype: 'textfield',
+            margin: '10 0',
                   bind: {
                     fieldLabel: '{radioUser ? "Tire type" : "Rating"}',
                   },
@@ -101,7 +108,7 @@ Ext.define('Tf.view.registration.Registration', {
                 xtype: 'button',
                 scale: 'medium',
                 align: 'stretch',
-                margin: '20 0 10 0',
+                margin: '10 0',
                 handler: 'onRegistration',
                 bind: {
                     disabled: '{!password||!login||!repeatPassword||(password!=repeatPassword)}',
@@ -110,7 +117,7 @@ Ext.define('Tf.view.registration.Registration', {
             },
             {
                 xtype: 'button',
-                margin: '20 0 0 0',
+                margin: '10 0',
                 scale: 'medium',
                 handler: 'onLoginClick',
                 text: 'Login'
