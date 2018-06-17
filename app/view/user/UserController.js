@@ -12,9 +12,9 @@ Ext.define('Tf.view.user.UserController', {
     },
 
     onUpdateOrder: function () {
-        Ext.create('Tf.view.order.Order', {
+        Ext.create('Tf.view.order.UpOrder', {
             title: 'Order',
-            height: 300,
+            height: 250,
             width: 300
         }).show();
     },

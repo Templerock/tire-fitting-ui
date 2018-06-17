@@ -3,7 +3,7 @@ Ext.define('Tf.view.order.OrderController', {
     alias: 'controller.order',
     id: 'orderContr',
 
-    acceptOrder: function () {
+    createOrder: function () {
         var fieldOne = this.lookupReference('ordFieldOne').getValue(),
             fieldTwo = this.lookupReference('ordFieldTwo').getValue(),
             fieldThree = Ext.util.Cookies.get("user"),
@@ -35,15 +35,15 @@ Ext.define('Tf.view.order.OrderController', {
                 console.log(orderId.getId());
             }
         });
-        orderId.set('description', fieldOne);
-        orderId.set('location', fieldTwo);
-        orderId.set('status', 'Active');
-        orderId.save({
-            success: function() {
-                console.log('The Order was updated');
-            }
-        });
-        this.getView().close();
+        // orderId.set('description', fieldOne);
+        // orderId.set('location', fieldTwo);
+        // orderId.set('status', 'Active');
+        // orderId.save({
+        //     success: function() {
+        //         console.log('The Order was updated');
+        //     }
+        // });
+        // this.getView().close();
     }
 
 

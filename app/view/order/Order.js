@@ -34,13 +34,11 @@ Ext.define('Tf.view.order.Order', {
         },
         {
             xtype: 'button',
-            handler: 'acceptOrder',
-            text: 'Accept'
+            bodyPadding: 20,
+            scale: 'medium',
+            handler: 'createOrder',
+            text: 'Create'
         },
-        {
-            xtype: 'button',
-            handler: 'updateOrder',
-            text: 'Update'
-        }
+
     ]
 });

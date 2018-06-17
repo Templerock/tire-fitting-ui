@@ -31,7 +31,7 @@ Ext.define('Tf.view.user.ServiceController', {
 
     loadCurrentOrders: function () {
         var form = this.lookupReference('formTwo');
-        Tf.model.AvailableOrder.load(Ext.util.Cookies.get('service'),
+        Tf.model.OrderComplete.load(Ext.util.Cookies.get('service'),
             {
             success: function(order) {
                 console.log(order.getId());
@@ -39,6 +39,39 @@ Ext.define('Tf.view.user.ServiceController', {
             }
         }
         );
+    },
+
+    acceptOrder: function () {
+        var form = this.lookupReference('formOne');
+        var order = Tf.model.OrderCreate.load(456, {
+            success: function(order) {
+                console.log(order.getId());
+            }
+        });
+        // order.set('serviceId', Ext.util.Cookies.get('service'));
+        // order.set('status', 'Active');
+        // order.save({
+        //     success: function() {
+        //         console.log('The Order was accepted');
+        //     }
+        // });
+        this.getView().close();
+    },
+
+    completeOrder: function () {
+        var form = this.lookupReference('formTwo');
+        var order = Tf.model.OrderCreate.load(455, {
+            success: function(order) {
+                console.log(order.getId());
+            }
+        });
+        // order.set('status', 'Completed');
+        // order.save({
+        //     success: function() {
+        //         console.log('The Order was completed');
+        //     }
+        // });
+        this.getView().close();
     },
 
     // loadActiveOrder: function () {

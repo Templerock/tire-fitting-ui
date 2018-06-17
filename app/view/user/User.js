@@ -88,13 +88,13 @@ Ext.define('Tf.view.user.User', {
                             buttons:[
                                 {
                                     scale: 'medium',
-                                    text: 'Go back to Login',
-                                    handler: 'onLoginClick'
+                                    text: 'User',
+                                    handler: 'loadUserInfo'
                                 },
                                 {
                                     scale: 'medium',
-                                    text: 'User',
-                                    handler: 'loadUserInfo'
+                                    text: 'Go back to Login',
+                                    handler: 'onLoginClick'
                                 }
                             ]
                         }
@@ -203,17 +203,7 @@ Ext.define('Tf.view.user.User', {
                         buttons: [
                             {
                                 scale: 'medium',
-                                text: 'Active',
-                                handler: 'loadActiveOrder'
-                            },
-                            // {
-                            //     scale: 'medium',
-                            //     text: 'to Login',
-                            //     handler: 'onLoginClick'
-                            // },
-                            {
-                                scale: 'medium',
-                                text: 'CreateOr',
+                                text: 'Create Order',
                                 bind: {
                                     disabled: '{status}',
                                 },
@@ -221,11 +211,23 @@ Ext.define('Tf.view.user.User', {
                             },
                             {
                                 scale: 'medium',
-                                text: 'UpdateOr',
+                                text: 'Update Order',
                                 handler: 'onUpdateOrder'
                             }
                         ]
                     }
+                ],
+                buttons: [
+                    {
+                        scale: 'medium',
+                        text: 'Active',
+                        handler: 'loadActiveOrder'
+                    },
+                    {
+                        scale: 'medium',
+                        text: 'Go back to Login',
+                        handler: 'onLoginClick'
+                    },
                 ]
             //Trying to bind data from store to textfield
             // bind: {

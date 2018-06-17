@@ -9,6 +9,7 @@ Ext.define('Tf.view.service.Service', {
     viewModel: {
         data: {
             status: '',
+            finstatus: '',
         }
         // stores: {
         //   singleUser: {              //Local store for current user
@@ -83,19 +84,17 @@ Ext.define('Tf.view.service.Service', {
                               ]
 
                           }
-                      ],
-                      buttons:[
-                          {
-                              scale: 'medium',
-                              text: 'Order',
-                              handler: 'loadServiceInfo'
-                          }
                       ]
                   }
               ]
           }
       ],
       buttons:[
+          {
+              scale: 'medium',
+              text: 'Order',
+              handler: 'loadServiceInfo'
+          },
           {
               scale: 'medium',
               text: 'Go back to Login',
@@ -173,7 +172,7 @@ Ext.define('Tf.view.service.Service', {
                                 text: 'Order ID',
                                 sortable: true,
                                 dataIndex: 'orderId',
-                                hidden: true
+                                // hidden: true
                             },
                                 {
                                     text: 'Service ID',
@@ -234,10 +233,10 @@ Ext.define('Tf.view.service.Service', {
                                 layout: 'anchor',
                                 defaultType: 'textfield',
                                 items: [
-                                    //     {
-                                    //     fieldLabel: 'Order ID',
-                                    //     name: 'orderId'
-                                    // },
+                                        {
+                                        fieldLabel: 'Order ID',
+                                        name: 'orderId'
+                                    },
                                     {
                                         fieldLabel: 'Service Name',
                                         name: 'serviceName'
@@ -248,6 +247,7 @@ Ext.define('Tf.view.service.Service', {
                                     },
                                     {
                                         fieldLabel: 'Status',
+                                        bind: '{status}',
                                         // bind: '{status}',
                                         name: 'status'
                                     }, {
@@ -267,8 +267,11 @@ Ext.define('Tf.view.service.Service', {
                         buttons:[
                             {
                                 scale: 'medium',
-                                text: 'Orders',
-                                handler: 'loadCurrentOrders'
+                                text: 'Accept Order',
+                                bind: {
+                                    disabled: '{!status}'
+                                },
+                                handler: 'acceptOrder'
                             }
                         ]
 
@@ -280,7 +283,12 @@ Ext.define('Tf.view.service.Service', {
                         scale: 'medium',
                         text: 'Go back to Login',
                         handler: 'onLoginClick'
-                    }
+                    },
+                    // {
+                    //     scale: 'medium',
+                    //     text: 'Orders',
+                    //     handler: 'loadCurrentOrders'
+                    // },
                 ]
 
 
@@ -403,7 +411,6 @@ Ext.define('Tf.view.service.Service', {
                                 {
                                     columnWidth: 0.75,
                                     xtype: 'gridpanel',
-                                    // reference: 'form',
                                     // store: 'service',
                                     frame: true,
                                     title: 'Current Orders',
@@ -411,7 +418,7 @@ Ext.define('Tf.view.service.Service', {
                                         text: 'Order ID',
                                         sortable: true,
                                         dataIndex: 'orderId',
-                                        hidden: true
+                                        // hidden: true
                                     },
                                         {
                                             text: 'Service ID',
@@ -472,10 +479,10 @@ Ext.define('Tf.view.service.Service', {
                                     layout: 'anchor',
                                     defaultType: 'textfield',
                                     items: [
-                                        //     {
-                                        //     fieldLabel: 'Order ID',
-                                        //     name: 'orderId'
-                                        // },
+                                            {
+                                            fieldLabel: 'Order ID',
+                                            name: 'orderId'
+                                        },
                                         {
                                             fieldLabel: 'Service Name',
                                             name: 'serviceName'
@@ -486,6 +493,7 @@ Ext.define('Tf.view.service.Service', {
                                         },
                                         {
                                             fieldLabel: 'Status',
+                                            bind: '{finstatus}',
                                             // bind: '{status}',
                                             name: 'status'
                                         }, {
@@ -503,17 +511,26 @@ Ext.define('Tf.view.service.Service', {
                                 }
                             ],
                             buttons:[
+
                                 {
                                     scale: 'medium',
-                                    text: 'Orders',
-                                    handler: 'loadCurrentOrders'
+                                    text: 'Complete Order',
+                                    bind: {
+                                        disabled: '{!finstatus}',
+                                    },
+                                    handler: 'completeOrder'
                                 }
+
                             ]
 
 
                         }
                     ],
-                    buttons:[
+                    buttons:[ {
+                        scale: 'medium',
+                        text: 'Orders',
+                        handler: 'loadCurrentOrders'
+                    },
                         {
                             scale: 'medium',
                             text: 'Go back to Login',
