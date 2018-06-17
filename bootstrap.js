@@ -545,7 +545,7 @@ Ext.Boot = Ext.Boot || (function (emptyFn) {
                 Boot.hasAsync = ("async" in script);
                 Boot.hasDefer = ("defer" in script);
                 Boot.hasOnLoad = ("onload" in script);
-
+                
                 // Feature detecting IE
                 Boot.isIE8 = Boot.hasReadyState && !Boot.hasAsync && Boot.hasDefer && !Boot.hasOnLoad;
                 Boot.isIE9 = Boot.hasReadyState && !Boot.hasAsync && Boot.hasDefer && Boot.hasOnLoad;
@@ -559,7 +559,7 @@ Ext.Boot = Ext.Boot || (function (emptyFn) {
                     Boot.isIE10 = (new Function('/*@cc_on return @_jscript_version @*/')()) === 10;
                     Boot.isIE10m = Boot.isIE10 || Boot.isIE9 || Boot.isIE8;
                 }
-
+                
                 // IE11 does not support conditional compilation so we detect it by exclusion
                 Boot.isIE11 = Boot.isIE10p && !Boot.isIE10;
 
@@ -628,7 +628,7 @@ Ext.Boot = Ext.Boot || (function (emptyFn) {
                 // In ALL browsers! When called multiple times in a sequence, as if when
                 // we resolve dependencies for entries, it will cause garbage collection events
                 // and overall painful slowness. This is why we try to avoid it as much as we can.
-                //
+                // 
                 // @TODO - see if we need this fallback logic
                 // http://stackoverflow.com/questions/470832/getting-an-absolute-url-from-a-relative-one-ie6-issue
                 resolverEl.href = url;
@@ -693,20 +693,20 @@ Ext.Boot = Ext.Boot || (function (emptyFn) {
 
             getEntry: function (url, cfg, canonicalPath) {
                 var key, entry;
-
+                
                 // Canonicalizing URLs via anchor element href yields the most correct result
                 // but is *extremely* resource heavy so we need to avoid it whenever possible
                 key = canonicalPath ? url : Boot.canonicalUrl(url);
                 entry = Boot.scripts[key];
-
+                
                 if (!entry) {
                     entry = Boot.create(url, key, cfg);
-
+                    
                     if (canonicalPath) {
                         entry.canonicalPath = true;
                     }
                 }
-
+                
                 return entry;
             },
 
@@ -817,16 +817,16 @@ Ext.Boot = Ext.Boot || (function (emptyFn) {
                 if (!('length' in indexMap)) {
                     var indexArray = [],
                         index;
-
+                    
                     for (index in indexMap) {
                         if (!isNaN(+index)) {
                             indexArray[+index] = indexMap[index];
                         }
                     }
-
+                    
                     indexMap = indexArray;
                 }
-
+                
                 return Request.prototype.getPathsFromIndexes(indexMap, loadOrder);
             },
 
@@ -899,12 +899,12 @@ Ext.Boot = Ext.Boot || (function (emptyFn) {
             charset = cfg.charset || Boot.config.charset;
 
         _apply(this, cfg);
-
+            
         delete this.url;
         this.urls = urls;
         this.charset = charset;
     };
-
+    
     Request.prototype = {
         $isRequest: true,
 
@@ -926,12 +926,12 @@ Ext.Boot = Ext.Boot || (function (emptyFn) {
                 queue = [item],
                 itemIndex = item.idx,
                 queue, entry, dependencies, depIndex, i, len;
-
+            
             if (indexMap[itemIndex]) {
                 // prevent cycles
                 return resolved;
             }
-
+            
             // Both indexMap and resolved are sparse arrays keyed by indexes.
             // This gives us a naturally sorted sequence of indexes later on
             // when we need to convert them to paths.
@@ -940,7 +940,7 @@ Ext.Boot = Ext.Boot || (function (emptyFn) {
             // of all dependencies for the current item that are not included
             // in indexMap.
             indexMap[itemIndex] = resolved[itemIndex] = true;
-
+            
             while (item = queue.shift()) {
                 // Canonicalizing URLs is expensive, we try to avoid it
                 if (item.canonicalPath) {
@@ -949,7 +949,7 @@ Ext.Boot = Ext.Boot || (function (emptyFn) {
                 else {
                     entry = Boot.getEntry(this.prepareUrl(item.path));
                 }
-
+                
                 if (!(skipLoaded && entry.done)) {
                     if (includeUses && item.uses && item.uses.length) {
                         dependencies = item.requires.concat(item.uses);
@@ -957,10 +957,10 @@ Ext.Boot = Ext.Boot || (function (emptyFn) {
                     else {
                         dependencies = item.requires;
                     }
-
+                    
                     for (i = 0, len = dependencies.length; i < len; i++) {
                         depIndex = dependencies[i];
-
+                        
                         if (!indexMap[depIndex]) {
                             indexMap[depIndex] = resolved[depIndex] = true;
                             queue.push(loadOrder[depIndex]);
@@ -968,39 +968,39 @@ Ext.Boot = Ext.Boot || (function (emptyFn) {
                     }
                 }
             }
-
+            
             return resolved;
         },
 
         getPathsFromIndexes: function (indexes, loadOrder) {
             var paths = [],
                 index, len;
-
+            
             // indexes is a sparse array with values being true for defined indexes
             for (index = 0, len = indexes.length; index < len; index++) {
                 if (indexes[index]) {
                     paths.push(loadOrder[index].path);
                 }
             }
-
+            
             return paths;
         },
 
         expandUrl: function (url, loadOrder, loadOrderMap, indexMap, includeUses, skipLoaded) {
             var item, resolved;
-
+            
             if (loadOrder) {
                 item = loadOrderMap[url];
-
+                
                 if (item) {
                     resolved = this.getLoadIndexes(item, indexMap, loadOrder, includeUses, skipLoaded);
-
+                    
                     if (resolved.length) {
                         return this.getPathsFromIndexes(resolved, loadOrder);
                     }
                 }
             }
-
+            
             return [url];
         },
 
@@ -1011,40 +1011,40 @@ Ext.Boot = Ext.Boot || (function (emptyFn) {
                 expandMap = {},
                 indexMap = [],
                 loadOrderMap, tmpExpanded, i, len, t, tlen, tUrl;
-
+            
             if (typeof urls === "string") {
                 urls = [urls];
             }
-
+            
             if (loadOrder) {
                 loadOrderMap = me.loadOrderMap;
-
+                
                 if (!loadOrderMap) {
                     loadOrderMap = me.loadOrderMap = me.createLoadOrderMap(loadOrder);
                 }
             }
-
+            
             for (i = 0, len = urls.length; i < len; i++) {
                 // We don't want to skip loaded entries (last argument === false).
                 // There are some overrides that get loaded before their respective classes,
                 // and when the class dependencies are processed we don't want to skip over
                 // the overrides' dependencies just because they were loaded first.
                 tmpExpanded = this.expandUrl(urls[i], loadOrder, loadOrderMap, indexMap, includeUses, false);
-
+                
                 for (t = 0, tlen = tmpExpanded.length; t < tlen; t++) {
                     tUrl = tmpExpanded[t];
-
+                    
                     if (!expandMap[tUrl]) {
                         expandMap[tUrl] = true;
                         expanded.push(tUrl);
                     }
                 }
             }
-
+            
             if (expanded.length === 0) {
                 expanded = urls;
             }
-
+            
             return expanded;
         },
 
@@ -1087,35 +1087,35 @@ Ext.Boot = Ext.Boot || (function (emptyFn) {
             var me = this,
                 entries = me.entries,
                 loadOrderMap, item, i, entry, urls, url;
-
+            
             if (!entries) {
                 entries = [];
                 urls = me.getUrls();
-
+                
                 // If we have loadOrder array then the map will be expanded by now
                 if (me.loadOrder) {
                     loadOrderMap = me.loadOrderMap;
                 }
-
+                
                 for (i = 0; i < urls.length; i++) {
                     url = me.prepareUrl(urls[i]);
-
+                    
                     if (loadOrderMap) {
                         item = loadOrderMap[url];
                     }
-
+                    
                     entry = Boot.getEntry(url, {
                         buster: me.buster,
                         charset: me.charset
                     }, item && item.canonicalPath);
-
+                    
                     entry.requests.push(me);
                     entries.push(entry);
                 }
-
+                
                 me.entries = entries;
             }
-
+            
             return entries;
         },
 
@@ -1261,12 +1261,12 @@ Ext.Boot = Ext.Boot || (function (emptyFn) {
         }
 
         _apply(this, cfg);
-
+        
         this.charset = charset;
         this.buster = buster;
         this.requests = [];
     };
-
+    
     Entry.prototype = {
         $isEntry: true,
         done: false,
@@ -1332,9 +1332,9 @@ Ext.Boot = Ext.Boot || (function (emptyFn) {
         getLoadUrl: function () {
             var me = this,
                 url;
-
+            
             url = me.canonicalPath ? me.url : Boot.canonicalUrl(me.url);
-
+            
             if (!me.loadUrl) {
                 me.loadUrl = !!me.buster
                     ? (url + (url.indexOf('?') === -1 ? '?' : '&') + me.buster)
@@ -1387,18 +1387,18 @@ Ext.Boot = Ext.Boot || (function (emptyFn) {
         createLoadElement: function(callback) {
             var me = this,
                 el = me.getElement();
-
+            
             me.preserve = true;
-
+            
             el.onerror = function() {
                 me.error = true;
-
+                
                 if (callback) {
                     callback();
                     callback = null;
                 }
             };
-
+            
             if (Boot.isIE10m) {
                 el.onreadystatechange = function() {
                     if (this.readyState === 'loaded' || this.readyState === 'complete') {
@@ -1415,7 +1415,7 @@ Ext.Boot = Ext.Boot || (function (emptyFn) {
                     callback = this.onload = this.onerror = null;
                 };
             }
-
+            
             // IE starts loading here
             el[me.prop] = me.getLoadUrl();
         },
@@ -2183,7 +2183,7 @@ Ext.Microloader = Ext.Microloader || (function () {
                         Ext.Boot.config.disableCaching = false;
                     }
                 }
-
+                
                 var assets = manifest.getAssets(),
                     cachedAssets = [],
                     asset, i, len, include, entry;
