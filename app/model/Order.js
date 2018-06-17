@@ -9,10 +9,12 @@ Ext.define('Tf.model.Order', {
     { name: 'serviceId', type: 'int' },
     { name: 'status', type: 'string' },
     { name: 'userId', type: 'int' },
+    { name: 'userName', type: 'string' },
+    { name: 'serviceName', type: 'string' },
   ],
   proxy: {
     type: "rest",
-    url: "http://localhost:8080/order"
+    url: "http://localhost:8080/order/active"
   }
 });
 

@@ -11,6 +11,6 @@ Ext.define('Tf.store.Order', {
   model: 'Tf.model.Order',
   proxy: {
     type: 'rest',
-    url: 'http://localhost:8080/order'
+    url: 'http://localhost:8080/order/history/' + Ext.util.Cookies.get('user'),
   }
 });

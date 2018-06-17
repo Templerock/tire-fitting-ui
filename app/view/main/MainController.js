@@ -10,8 +10,10 @@ Ext.define('Tf.view.main.MainController', {
     },
       store: {
           '*': {
-              load: 'loadStore',
-              single: true
+              load: {
+                fn: 'loadStore',
+                single: true
+              }
           }
       }
   },
@@ -36,122 +38,54 @@ Ext.define('Tf.view.main.MainController', {
     }
   },
 
-  onRegistration: function () {
-    var fieldOne = this.lookupReference('regFieldOne').getValue(),
-        fieldTwo = this.lookupReference('regFieldTwo').getValue(),
-        fieldThree = this.lookupReference('regFieldThree').getValue(),
-        fieldFour = this.lookupReference('regFieldFour').getValue(),
-        login = this.lookupReference('regLogField').getValue(),
-        pass = this.lookupReference('regPassField').getValue();
-
-    var userRadio = Ext.getCmp('radioUserButton'),
-        serviceRadio = this.lookupReference('serviceRadio'),
-        url = userRadio.checked ? "user" : "service";
-    if (userRadio.checked) {
-      var user = Ext.create('Tf.model.User', {
-        carInfo: {
-          carBrand: fieldTwo,
-          // carInfoId: 0,
-          tireRadius: fieldThree,
-          tireType: fieldFour
-        },
-        name: fieldOne,
-        // userId: 0
-      });
-      user.save({          //POST service
-        success: function () {
-          var registration = Ext.create('Tf.model.Registration', {
-            login: login,
-            password: pass,
-            userId: user.data.userId,
-            serviceId: null
-          });
-          registration.save()
-
-        },
-        failure: function () {
-          Ext.Msg.alert('Error!', 'Something went wrong, try again');
-        }
-      });
-      // Ext.util.Cookies.set(url, login); //TODO delete after REST integration
-
-    }
-    else {
-      var service = Ext.create('Tf.model.Service', {
-        name: fieldOne,
-        location: fieldTwo,
-        servingStaff: fieldThree,
-        totalRating: fieldFour
-      });
-      service.save({          //POST service
-        success: function () {
-          var registration = Ext.create('Tf.model.Registration', {
-            login: login,
-            password: pass,
-            userId: null,
-            serviceId: service.data.serviceId
-          });
-          registration.save()
-
-        },
-        failure: function () {
-          Ext.Msg.alert('Error!', 'Something went wrong, try again');
-        }
-      });
-
-    }
-    // Ext.util.Cookies.set(url, login);
-    this.redirectTo(url);
-        },
-
-  onLogin: function () {
-    var login = this.lookupReference('logLogin').getValue(),
-        password = this.lookupReference('logPass').getValue();
-
-    var authorization = Ext.create('Tf.model.Login', {
-      serviceId: null,
-      userId: null,
-      login: login,
-      password: password
-    });
-    authorization.load({
-      params: {
-        login: login,
-        password: password
-      },
-      success: function () {
-        // Ext.util.Cookies.set(authorization.data.userId > 0 ? 'user' : 'service',
-        //     login);
-        window.location.hash = authorization.data.userId > 0 ? 'user'
-            : 'service'
-      }
-    });
-  },
-
-  onRegisterClick: function () {
-    this.redirectTo('registration');
-  },
-
-  onLoginClick: function () {
+  onLoginClickMain: function () {
     this.redirectTo('login');
-  },
-
-  onUserClick: function () {
-    this.redirectTo('user');
-  },
-
-  onServiceClick: function () {
-    this.redirectTo('service');
   },
 
   loadStore: function (store) {
     var task = {
       run: function () {
         Ext.getStore(store).load();
+        store.isRunning = true;
       },
-      // interval: 30000
+      interval: 30000
     };
-    Ext.TaskManager.start(task);
+    if (!store.isRunning) {
+      Ext.TaskManager.start(task);
+    }
+  },
+    // onCreateOrder: function () {
+    //     Ext.create('Tf.view.order.Order', {
+    //         title: 'Order',
+    //         height: 250,
+    //         width: 300
+    //     }).show();
+    // },
+    //
+    // onUpdateOrder: function () {
+    //     Ext.create('Tf.view.order.Order', {
+    //         title: 'Order',
+    //         height: 300,
+    //         width: 300
+    //     }).show();
+    // },
+    //
+    // onSelectionChange: function (model, records) {
+    // var form = this.lookupReference('myForm');
+    //     var rec = records[0];
+    //     if (rec) {
+    //         form.getForm().loadRecord(rec);
+    //     }
+    // },
+    //
+    // loadUserInfo: function () {
+    //     var form = this.lookupReference('userForm');
+    //     Tf.model.User.load(Ext.util.Cookies.get('user'), {
+    //         success: function(user) {
+    //             console.log(user.getId());
+    //             form.getForm().loadRecord(user);
+    //         }
+    //     });
+    // }
 
-  }
 });

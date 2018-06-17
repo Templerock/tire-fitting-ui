@@ -14,7 +14,7 @@ Ext.define('Tf.store.Service', {
     url: 'http://localhost:8080/service'
   },
   // filters: [{
-  //   property: 'name',
+  //   property: 'serviceId',
   //   value: Ext.util.Cookies.get('service')
   // }]
 });
