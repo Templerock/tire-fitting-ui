@@ -12,7 +12,7 @@ Ext.define('Tf.view.user.ServiceController', {
     },
 
     onSelectionChange: function (model, records) {
-        var form = this.lookupReference('myForm');
+        var form = this.lookupReference('formOne');
         var rec = records[0];
         if (rec) {
             form.getForm().loadRecord(rec);
@@ -30,8 +30,8 @@ Ext.define('Tf.view.user.ServiceController', {
     },
 
     loadCurrentOrders: function () {
-        var form = this.lookupReference('myForm');
-        Tf.model.CurrentOrder.load(Ext.util.Cookies.get('service'),
+        var form = this.lookupReference('formTwo');
+        Tf.model.AvailableOrder.load(Ext.util.Cookies.get('service'),
             {
             success: function(order) {
                 console.log(order.getId());

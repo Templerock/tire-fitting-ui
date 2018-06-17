@@ -146,7 +146,7 @@ Ext.define('Tf.view.service.Service', {
         items: [
             {
                 xtype: 'form',
-                reference: 'myForm',
+                reference: 'formOne',
                 layout: 'fit',
                 bodyPadding: '10',
                 fieldDefaults: {
@@ -164,9 +164,10 @@ Ext.define('Tf.view.service.Service', {
                             {
                             columnWidth: 0.75,
                             xtype: 'gridpanel',
+                                store: 'service',
                                 // reference: 'form',
-                               // store: 'current',
-                            frame: true,
+                               // store: 'currOrder',
+                            // frame: true,
                             title: 'Avalible order',
                             columns: [{
                                 text: 'Order ID',
@@ -384,7 +385,7 @@ Ext.define('Tf.view.service.Service', {
             items: [
                 {
                     xtype: 'form',
-                    // reference: 'myForm',
+                    reference: 'formTwo',
                     layout: 'fit',
                     bodyPadding: '10',
                     fieldDefaults: {
@@ -403,7 +404,7 @@ Ext.define('Tf.view.service.Service', {
                                     columnWidth: 0.75,
                                     xtype: 'gridpanel',
                                     // reference: 'form',
-                                    store: 'order',
+                                    // store: 'service',
                                     frame: true,
                                     title: 'Current Orders',
                                     columns: [{
@@ -505,7 +506,7 @@ Ext.define('Tf.view.service.Service', {
                                 {
                                     scale: 'medium',
                                     text: 'Orders',
-                                    // handler: 'loadCurrentOrders'
+                                    handler: 'loadCurrentOrders'
                                 }
                             ]
 
