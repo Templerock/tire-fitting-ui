@@ -38,54 +38,16 @@ Ext.define('Tf.view.main.MainController', {
     }
   },
 
-  onLoginClickMain: function () {
-    this.redirectTo('login');
-  },
-
   loadStore: function (store) {
     var task = {
       run: function () {
         Ext.getStore(store).load();
         store.isRunning = true;
       },
-      interval: 30000
+      interval: 5000
     };
     if (!store.isRunning) {
       Ext.TaskManager.start(task);
     }
-  },
-    // onCreateOrder: function () {
-    //     Ext.create('Tf.view.order.Order', {
-    //         title: 'Order',
-    //         height: 250,
-    //         width: 300
-    //     }).show();
-    // },
-    //
-    // onUpdateOrder: function () {
-    //     Ext.create('Tf.view.order.Order', {
-    //         title: 'Order',
-    //         height: 300,
-    //         width: 300
-    //     }).show();
-    // },
-    //
-    // onSelectionChange: function (model, records) {
-    // var form = this.lookupReference('myForm');
-    //     var rec = records[0];
-    //     if (rec) {
-    //         form.getForm().loadRecord(rec);
-    //     }
-    // },
-    //
-    // loadUserInfo: function () {
-    //     var form = this.lookupReference('userForm');
-    //     Tf.model.User.load(Ext.util.Cookies.get('user'), {
-    //         success: function(user) {
-    //             console.log(user.getId());
-    //             form.getForm().loadRecord(user);
-    //         }
-    //     });
-    // }
-
+  }
 });

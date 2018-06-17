@@ -11,18 +11,6 @@ Ext.define('Tf.view.user.User', {
       data: {
           status: '',
       }
-    // stores: {
-    //   singleUser: {              //Local store for current user
-    //     autoLoad: true,
-    //     autoSync: true,
-    //     cors: true,
-    //     model: 'Tf.model.User',
-    //     proxy: {
-    //       type: 'rest',
-    //       url: 'http://localhost:8080/user/' + Ext.util.Cookies.get('user')
-    //     }
-    //   }
-    // }
   },
     items: [
         {
@@ -52,21 +40,11 @@ Ext.define('Tf.view.user.User', {
                                     layout: 'anchor',
                                     defaultType: 'textfield',
                                     items: [
-                                    //     {
-                                    //     fieldLabel: 'User ID',
-                                    //     dataIndex: 'userId',
-                                    //     name: 'orderId'
-                                    // }
                                     , {
                                         fieldLabel: 'Name',
                                         dataIndex: 'name',
                                         name: 'name'
                                     }
-                                    //     {
-                                    //     fieldLabel: 'Car Info Id',
-                                    //     dataIndex: 'carInfoId',
-                                    //     name: 'carInfoId'
-                                    // }
                                     , {
                                         fieldLabel: 'Car Brand',
                                         dataIndex: 'carBrand',
@@ -85,22 +63,23 @@ Ext.define('Tf.view.user.User', {
                                     ]
                                 }
                             ],
-                            buttons:[
-                                {
-                                    scale: 'medium',
-                                    text: 'User',
-                                    handler: 'loadUserInfo'
-                                },
-                                {
-                                    scale: 'medium',
-                                    text: 'Go back to Login',
-                                    handler: 'onLoginClick'
-                                }
-                            ]
+
                         }
                     ]
                 }
 
+            ],
+            buttons:[
+                {
+                    scale: 'medium',
+                    text: 'User',
+                    handler: 'loadUserInfo'
+                },
+                {
+                    scale: 'medium',
+                    text: 'Go back to Login',
+                    handler: 'onLoginClick'
+                }
             ]
         },
         {
@@ -123,48 +102,6 @@ Ext.define('Tf.view.user.User', {
                         layout: 'column',
                         bodyPadding: '10',
                                 items: [
-                                    // {
-                                    // columnWidth: 0.75,
-                                    // xtype: 'gridpanel',
-                                    // frame: true,
-                                    // title: 'User orders',
-                                    // // reference: 'activeOrder',
-                                    // columns: [{
-                                    //     text: 'Order ID',
-                                    //     sortable: true,
-                                    //     dataIndex: 'orderId'
-                                    // },
-                                    //     {
-                                    //         text: 'Service ID',
-                                    //         flex: 1,
-                                    //         sortable: true,
-                                    //         dataIndex: 'serviceId',
-                                    //     },
-                                    //     {
-                                    //         text: 'Status',
-                                    //         flex: 1,
-                                    //         sortable: true,
-                                    //         dataIndex: 'status',
-                                    //     }, {
-                                    //         text: 'Location',
-                                    //         flex: 1,
-                                    //         sortable: true,
-                                    //         dataIndex: 'location',
-                                    //     }, {
-                                    //         text: 'Rating',
-                                    //         flex: 1,
-                                    //         sortable: true,
-                                    //         dataIndex: 'rating',
-                                    //     }, {
-                                    //         text: 'Description',
-                                    //         flex: 1,
-                                    //         sortable: true,
-                                    //         dataIndex: 'description',
-                                    //     }],
-                                //     listeners: {
-                                //         selectionchange: 'onSelectionChange'
-                                //     }
-                                // },
                                     {
                                     columnWidth: 1,
                                     xtype: 'fieldset',
@@ -172,17 +109,14 @@ Ext.define('Tf.view.user.User', {
                                     layout: 'anchor',
                                     defaultType: 'textfield',
                                     items: [
-                                    //     {
-                                    //     fieldLabel: 'Order ID',
-                                    //     name: 'orderId'
-                                    // },
                                         {
                                         fieldLabel: 'Service Name',
                                         name: 'serviceName'
                                     },
                                         {
                                             fieldLabel: 'User Name',
-                                            name: 'userName'
+                                            name: 'userName',
+                                            hidden: true
                                         },
                                         {
                                         fieldLabel: 'Status',
@@ -194,7 +128,8 @@ Ext.define('Tf.view.user.User', {
                                     },
                                         {
                                             fieldLabel: 'Rating',
-                                            name: 'rating'
+                                            name: 'rating',
+                                            hidden: true,
                                         },
                                         {
                                             fieldLabel: 'Description',
@@ -211,38 +146,35 @@ Ext.define('Tf.view.user.User', {
                             },
                             {
                                 scale: 'medium',
+                                bind: {
+                                    disabled: '{!status}',
+                                },
                                 text: 'Update Order',
                                 handler: 'onUpdateOrder'
                             }
                         ]
                     }
-                ],
-                buttons: [
-                    {
-                        scale: 'medium',
-                        text: 'Active',
-                        handler: 'loadActiveOrder'
-                    },
-                    {
-                        scale: 'medium',
-                        text: 'Go back to Login',
-                        handler: 'onLoginClick'
-                    },
                 ]
-            //Trying to bind data from store to textfield
-            // bind: {
-            //   value: '{name}'
-            //   //value: '{singleUser.data.name}'
-            // }
-        },
-        ]
+        }
+        ],
+            buttons: [
+                {
+                    scale: 'medium',
+                    text: 'Active',
+                    handler: 'loadActiveOrder'
+                },
+                {
+                    scale: 'medium',
+                    text: 'Go back to Login',
+                    handler: 'onLoginClick'
+                }
+            ]
     },{
         title: 'Orders history',
         bodyPadding: '10',
         items: [{
             xtype: 'gridpanel',
             store: 'order',
-            // maxWidth: 600,
             plugins: 'gridfilters',
             columns: [{
                 text: 'Order ID',
@@ -297,11 +229,6 @@ Ext.define('Tf.view.user.User', {
                 sortable: true,
                 dataIndex: 'userId',
                 hidden: true,
-                // filter:
-                //     {
-                //         type: 'string',
-                //         value: Ext.util.Cookies.get('user')
-                //     }
             }]
 
         }
@@ -315,116 +242,3 @@ Ext.define('Tf.view.user.User', {
        ]
     }]
 });
-
-
-
-
-// var frmAccount = Ext.create('Ext.form.Panel', {
-//     initComponent: function () {
-//         Ext.apply(this,
-//             {
-//                 fieldDefaults: {
-//                     labelAlign: 'left',
-//                     labelWidth: 150,
-//                     anchor: '100%',
-//                     msgTarget: 'side'
-//                 },
-//
-//                 items: [
-//                     {
-//                         title: 'User orders',
-//                         layout: 'column',
-//                         bodyPadding: '50',
-//                         margin: '50 250 0 250',
-//                         items: [{
-//                             columnWidth: 0.75,
-//                             xtype: 'gridpanel',
-//                             frame: true,
-//                             title: 'User orders',
-//                             store: 'order',
-//                             columns: [{
-//                                 text: 'Order ID',
-//                                 sortable: true,
-//                                 dataIndex: 'orderId'
-//                             },
-//                                 {
-//                                     text: 'Service ID',
-//                                     flex: 1,
-//                                     sortable: true,
-//                                     dataIndex: 'serviceId',
-//                                 },
-//                                 {
-//                                     text: 'Status',
-//                                     flex: 1,
-//                                     sortable: true,
-//                                     dataIndex: 'status',
-//                                 }, {
-//                                     text: 'Location',
-//                                     flex: 1,
-//                                     sortable: true,
-//                                     dataIndex: 'location',
-//                                 }, {
-//                                     text: 'Rating',
-//                                     flex: 1,
-//                                     sortable: true,
-//                                     dataIndex: 'rating',
-//                                 }, {
-//                                     text: 'Description',
-//                                     flex: 1,
-//                                     sortable: true,
-//                                     dataIndex: 'description',
-//                                 }],
-//                             listeners: {
-//                                 scope: this,
-//                                 selectionchange: this.onSelectionChange
-//                             }
-//                         }, {
-//                             columnWidth: 0.25,
-//                             xtype: 'fieldset',
-//                             title: 'Details',
-//                             layout: 'anchor',
-//                             defaultType: 'textfield',
-//                             items: [{
-//                                 fieldLabel: 'Order ID',
-//                                 name: 'orderId'
-//                             }, {
-//                                 fieldLabel: 'Service Name',
-//                                 name: 'serviceId'
-//                             }, {
-//                                 fieldLabel: 'Status',
-//                                 name: 'status'
-//                             }, {
-//                                 fieldLabel: 'Location',
-//                                 name: 'location'
-//                             },
-//                                 {
-//                                     fieldLabel: 'Rating',
-//                                     name: 'rating'
-//                                 },
-//                                 {
-//                                     fieldLabel: 'Description',
-//                                     name: 'description'
-//                                 },
-//                                 {
-//                                     xtype: 'button',
-//                                     margin: '0 0 0 154',
-//                                     scale: 'medium',
-//                                     text: 'Go back to Login',
-//                                     handler: 'onLoginClick'
-//
-//                                 }
-//                             ]
-//
-//                         }]
-//                     }
-//                 ]
-//             });
-//         this.callParent();
-//     },
-    // onSelectionChange: function (model, records) {
-    //     var rec = records[0];
-    //     if (rec) {
-    //         this.getForm().loadRecord(rec);
-    //     }
-    // }
-// });

@@ -11,18 +11,6 @@ Ext.define('Tf.view.service.Service', {
             status: '',
             finstatus: '',
         }
-        // stores: {
-        //   singleUser: {              //Local store for current user
-        //     autoLoad: true,
-        //     autoSync: true,
-        //     cors: true,
-        //     model: 'Tf.model.User',
-        //     proxy: {
-        //       type: 'rest',
-        //       url: 'http://localhost:8080/user/' + Ext.util.Cookies.get('user')
-        //     }
-        //   }
-        // }
     },
     layout: 'fit',
     items: [{
@@ -82,7 +70,6 @@ Ext.define('Tf.view.service.Service', {
                                   }
 
                               ]
-
                           }
                       ]
                   }
@@ -92,7 +79,7 @@ Ext.define('Tf.view.service.Service', {
       buttons:[
           {
               scale: 'medium',
-              text: 'Order',
+              text: 'Service',
               handler: 'loadServiceInfo'
           },
           {
@@ -101,45 +88,6 @@ Ext.define('Tf.view.service.Service', {
               handler: 'onLoginClick'
           }
       ]
-
-    // layout: 'fit',
-    // items: [{
-    //   xtype: 'gridpanel',
-    //   title: 'Service info',
-    //   store: 'service',
-    //   columns: [{
-    //     text: 'Service ID',
-    //     width: 75,
-    //     sortable: true,
-    //     dataIndex: 'serviceId'
-    //   }, {
-    //     text: 'Name',
-    //     flex: 1,
-    //     sortable: true,
-    //     dataIndex: 'name',
-    //   }, {
-    //     text: 'Location',
-    //     flex: 1,
-    //     sortable: true,
-    //     dataIndex: 'location',
-    //   }, {
-    //     text: 'Serving Staff',
-    //     flex: 1,
-    //     sortable: true,
-    //     dataIndex: 'servingStaff',
-    //   }, {
-    //     text: 'Total Rating',
-    //     flex: 1,
-    //     sortable: true,
-    //     dataIndex: 'totalRating',
-    //   }],
-    //
-    // }, {
-    //   xtype: 'button',
-    //   text: 'Go back to Login',
-    //   handler: 'onLoginClick'
-    //
-    // }]
   }, {
     title: 'Available Orders',
         items: [
@@ -156,23 +104,18 @@ Ext.define('Tf.view.service.Service', {
                 },
                 items:[
                     {
-                        // title: 'Current order',
                         layout: 'column',
                         bodyPadding: '10',
                         items: [
                             {
                             columnWidth: 0.75,
                             xtype: 'gridpanel',
-                                store: 'service',
-                                // reference: 'form',
-                               // store: 'currOrder',
-                            // frame: true,
+                            store: 'service',
                             title: 'Avalible order',
                             columns: [{
                                 text: 'Order ID',
                                 sortable: true,
                                 dataIndex: 'orderId',
-                                // hidden: true
                             },
                                 {
                                     text: 'Service ID',
@@ -213,6 +156,7 @@ Ext.define('Tf.view.service.Service', {
                                     flex: 1,
                                     sortable: true,
                                     dataIndex: 'rating',
+                                    hidden: true,
                                     name: 'rating'
                                 }, {
                                     text: 'Description',
@@ -222,7 +166,7 @@ Ext.define('Tf.view.service.Service', {
                                     name: 'description'
                                 }],
                                 listeners: {
-                                    selectionchange: 'onSelectionChange'
+                                    selectionchange: 'onSelectionChangeOne'
                                 }
                             },
 
@@ -239,6 +183,7 @@ Ext.define('Tf.view.service.Service', {
                                     },
                                     {
                                         fieldLabel: 'Service Name',
+                                        hidden: true,
                                         name: 'serviceName'
                                     },
                                     {
@@ -248,7 +193,6 @@ Ext.define('Tf.view.service.Service', {
                                     {
                                         fieldLabel: 'Status',
                                         bind: '{status}',
-                                        // bind: '{status}',
                                         name: 'status'
                                     }, {
                                         fieldLabel: 'Location',
@@ -256,6 +200,7 @@ Ext.define('Tf.view.service.Service', {
                                     },
                                     {
                                         fieldLabel: 'Rating',
+                                        hidden: true,
                                         name: 'rating'
                                     },
                                     {
@@ -274,119 +219,16 @@ Ext.define('Tf.view.service.Service', {
                                 handler: 'acceptOrder'
                             }
                         ]
-
-
             }
-        ],
-                buttons:[
-                    {
-                        scale: 'medium',
-                        text: 'Go back to Login',
-                        handler: 'onLoginClick'
-                    },
-                    // {
-                    //     scale: 'medium',
-                    //     text: 'Orders',
-                    //     handler: 'loadCurrentOrders'
-                    // },
-                ]
-
-
-    // layout: 'fit',
-    // items: [{
-    //   xtype: 'button',
-    //   text: 'Go back to Login',
-    //   handler: 'onLoginClick'
-    // }, {
-    //   xtype: 'gridpanel',
-    //   // renderTo: document.body,
-    //   layout: 'fit',
-    //   frame: true,
-    //   title: 'User orders',
-    //   iconCls: 'icon-user',
-    //   store: 'order',
-    //   columns: [{
-    //     text: 'Order ID',
-    //     width: 100,
-    //     sortable: true,
-    //     dataIndex: 'orderId'
-    //   }, {
-    //     text: 'Service ID',
-    //     flex: 1,
-    //     sortable: true,
-    //     dataIndex: 'serviceId',
-    //   }, {
-    //     text: 'Status',
-    //     flex: 1,
-    //     sortable: true,
-    //     dataIndex: 'status',
-    //   }, {
-    //     text: 'Location',
-    //     flex: 1,
-    //     sortable: true,
-    //     dataIndex: 'location',
-    //   }, {
-    //     text: 'Rating',
-    //     flex: 1,
-    //     sortable: true,
-    //     dataIndex: 'rating',
-    //   }, {
-    //     text: 'Description',
-    //     flex: 1,
-    //     sortable: true,
-    //     dataIndex: 'description',
-    //   }]
-    //
-    // }]
+        ]
   }],
-  //       {
-  //   title: 'Available Orders',
-  //   layout: 'fit',
-  //   items: [{
-  //     xtype: 'button',
-  //     text: 'Go back to Login',
-  //     handler: 'onLoginClick'
-  //   }, {
-  //     xtype: 'gridpanel',
-  //     // renderTo: document.body,
-  //     layout: 'fit',
-  //     frame: true,
-  //     title: 'User orders',
-  //     iconCls: 'icon-user',
-  //     store: 'order',
-  //     columns: [{
-  //       text: 'Order ID',
-  //       width: 100,
-  //       sortable: true,
-  //       dataIndex: 'orderId'
-  //     }, {
-  //       text: 'Service ID',
-  //       flex: 1,
-  //       sortable: true,
-  //       dataIndex: 'serviceId',
-  //     }, {
-  //       text: 'Status',
-  //       flex: 1,
-  //       sortable: true,
-  //       dataIndex: 'status',
-  //     }, {
-  //       text: 'Location',
-  //       flex: 1,
-  //       sortable: true,
-  //       dataIndex: 'location',
-  //     }, {
-  //       text: 'Rating',
-  //       flex: 1,
-  //       sortable: true,
-  //       dataIndex: 'rating',
-  //     }, {
-  //       text: 'Description',
-  //       flex: 1,
-  //       sortable: true,
-  //       dataIndex: 'description',
-  //     },],
-  //
-  //   },]
+        buttons:[
+            {
+                scale: 'medium',
+                text: 'Go back to Login',
+                handler: 'onLoginClick'
+            }
+        ]
   },
         {
             title: 'Current Orders',
@@ -404,21 +246,18 @@ Ext.define('Tf.view.service.Service', {
                     },
                     items:[
                         {
-                            // title: 'Current order',
                             layout: 'column',
                             bodyPadding: '10',
                             items: [
                                 {
                                     columnWidth: 0.75,
                                     xtype: 'gridpanel',
-                                    // store: 'service',
-                                    frame: true,
+                                    store: 'user',
                                     title: 'Current Orders',
                                     columns: [{
                                         text: 'Order ID',
                                         sortable: true,
                                         dataIndex: 'orderId',
-                                        // hidden: true
                                     },
                                         {
                                             text: 'Service ID',
@@ -459,6 +298,7 @@ Ext.define('Tf.view.service.Service', {
                                             flex: 1,
                                             sortable: true,
                                             dataIndex: 'rating',
+                                            hidden: true,
                                             name: 'rating'
                                         }, {
                                             text: 'Description',
@@ -468,7 +308,7 @@ Ext.define('Tf.view.service.Service', {
                                             name: 'description'
                                         }],
                                     listeners: {
-                                        selectionchange: 'onSelectionChange'
+                                        selectionchange: 'onSelectionChangeTwo'
                                     }
                                 },
 
@@ -485,6 +325,7 @@ Ext.define('Tf.view.service.Service', {
                                         },
                                         {
                                             fieldLabel: 'Service Name',
+                                            hidden: true,
                                             name: 'serviceName'
                                         },
                                         {
@@ -494,7 +335,6 @@ Ext.define('Tf.view.service.Service', {
                                         {
                                             fieldLabel: 'Status',
                                             bind: '{finstatus}',
-                                            // bind: '{status}',
                                             name: 'status'
                                         }, {
                                             fieldLabel: 'Location',
@@ -502,6 +342,7 @@ Ext.define('Tf.view.service.Service', {
                                         },
                                         {
                                             fieldLabel: 'Rating',
+                                            hidden: true,
                                             name: 'rating'
                                         },
                                         {
@@ -526,114 +367,18 @@ Ext.define('Tf.view.service.Service', {
 
                         }
                     ],
-                    buttons:[ {
-                        scale: 'medium',
-                        text: 'Orders',
-                        handler: 'loadCurrentOrders'
-                    },
-                        {
-                            scale: 'medium',
-                            text: 'Go back to Login',
-                            handler: 'onLoginClick'
-                        }
-                    ]
-
-
-                    // layout: 'fit',
-                    // items: [{
-                    //   xtype: 'button',
-                    //   text: 'Go back to Login',
-                    //   handler: 'onLoginClick'
-                    // }, {
-                    //   xtype: 'gridpanel',
-                    //   // renderTo: document.body,
-                    //   layout: 'fit',
-                    //   frame: true,
-                    //   title: 'User orders',
-                    //   iconCls: 'icon-user',
-                    //   store: 'order',
-                    //   columns: [{
-                    //     text: 'Order ID',
-                    //     width: 100,
-                    //     sortable: true,
-                    //     dataIndex: 'orderId'
-                    //   }, {
-                    //     text: 'Service ID',
-                    //     flex: 1,
-                    //     sortable: true,
-                    //     dataIndex: 'serviceId',
-                    //   }, {
-                    //     text: 'Status',
-                    //     flex: 1,
-                    //     sortable: true,
-                    //     dataIndex: 'status',
-                    //   }, {
-                    //     text: 'Location',
-                    //     flex: 1,
-                    //     sortable: true,
-                    //     dataIndex: 'location',
-                    //   }, {
-                    //     text: 'Rating',
-                    //     flex: 1,
-                    //     sortable: true,
-                    //     dataIndex: 'rating',
-                    //   }, {
-                    //     text: 'Description',
-                    //     flex: 1,
-                    //     sortable: true,
-                    //     dataIndex: 'description',
-                    //   }]
-                    //
-                    // }]
                 }],
-            //       {
-            //   title: 'Available Orders',
-            //   layout: 'fit',
-            //   items: [{
-            //     xtype: 'button',
-            //     text: 'Go back to Login',
-            //     handler: 'onLoginClick'
-            //   }, {
-            //     xtype: 'gridpanel',
-            //     // renderTo: document.body,
-            //     layout: 'fit',
-            //     frame: true,
-            //     title: 'User orders',
-            //     iconCls: 'icon-user',
-            //     store: 'order',
-            //     columns: [{
-            //       text: 'Order ID',
-            //       width: 100,
-            //       sortable: true,
-            //       dataIndex: 'orderId'
-            //     }, {
-            //       text: 'Service ID',
-            //       flex: 1,
-            //       sortable: true,
-            //       dataIndex: 'serviceId',
-            //     }, {
-            //       text: 'Status',
-            //       flex: 1,
-            //       sortable: true,
-            //       dataIndex: 'status',
-            //     }, {
-            //       text: 'Location',
-            //       flex: 1,
-            //       sortable: true,
-            //       dataIndex: 'location',
-            //     }, {
-            //       text: 'Rating',
-            //       flex: 1,
-            //       sortable: true,
-            //       dataIndex: 'rating',
-            //     }, {
-            //       text: 'Description',
-            //       flex: 1,
-            //       sortable: true,
-            //       dataIndex: 'description',
-            //     },],
-            //
-            //   },]
+            buttons:[ {
+                scale: 'medium',
+                text: 'Orders',
+                handler: 'loadCurrentOrders'
+            },
+                {
+                    scale: 'medium',
+                    text: 'Go back to Login',
+                    handler: 'onLoginClick'
+                }
+            ]
         }
   ]
 });

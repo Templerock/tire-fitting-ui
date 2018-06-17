@@ -56,7 +56,6 @@ Ext.define('Tf.view.login.Login', {
                 margin: '10 0',
                 align: 'stretch',
                 handler: 'onRegisterClick',
-                text: 'Registration'
-            }]
+                text: 'Registration'}]
     }]
 });

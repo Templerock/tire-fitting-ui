@@ -7,8 +7,8 @@ Ext.define('Tf.view.user.UserController', {
         Ext.create('Tf.view.order.Order', {
             title: 'Order',
             height: 250,
-            width: 300
-        }).show();
+            width: 300}
+        ).show();
     },
 
     onUpdateOrder: function () {
@@ -18,14 +18,6 @@ Ext.define('Tf.view.user.UserController', {
             width: 300
         }).show();
     },
-
-    // onSelectionChange: function (model, records) {
-    //     var form = this.lookupReference('myForm');
-    //     var rec = records[0];
-    //     if (rec) {
-    //         form.getForm().loadRecord(rec);
-    //     }
-    // },
 
     loadUserInfo: function () {
         var form = this.lookupReference('userForm');
@@ -49,5 +41,5 @@ Ext.define('Tf.view.user.UserController', {
 
     onLoginClick: function () {
         this.redirectTo('login');
-    },
+    }
 });

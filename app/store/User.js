@@ -8,20 +8,9 @@ Ext.define('Tf.store.User', {
   autoSync: true,
   cors: true,
   storeId: 'user',
-  model: 'Tf.model.User',
+  model: 'Tf.model.Order',
   proxy: {
     type: 'rest',
-    url: 'http://localhost:8080/user/' + Ext.util.Cookies.get('user')
-  },
-    // reader: {
-    //     type: 'json',
-    //     rootProperty: 'data'
-    // },
-    // writer: {
-    //     type: 'json'
-    // }
-  // filters: [{
-  //   property: 'userId',
-  //   value: Ext.util.Cookies.get('user')
-  // }]
+      url: 'http://localhost:8080/order/complete/' + Ext.util.Cookies.get('service')
+  }
 });

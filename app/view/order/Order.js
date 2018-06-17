@@ -38,7 +38,6 @@ Ext.define('Tf.view.order.Order', {
             scale: 'medium',
             handler: 'createOrder',
             text: 'Create'
-        },
-
+        }
     ]
 });

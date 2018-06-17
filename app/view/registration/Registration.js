@@ -135,12 +135,10 @@ Ext.define('Tf.view.registration.Registration', {
                     text: 'Register'
                 },
                 scale: 'medium',
-                // width: 160,
                 handler: 'onRegistration',
                 disabled: true
             }, {
                 scale: 'medium',
-                // width: 150,
                 handler: 'onLoginClick',
                 text: 'Login'
             }]
