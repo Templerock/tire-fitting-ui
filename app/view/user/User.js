@@ -21,6 +21,9 @@ Ext.define('Tf.view.user.User', {
                     reference: 'userForm',
                     layout: 'center',
                     bodyPadding: '10',
+                    listeners: {
+                            afterrender: 'loadUserInfo'
+                        },
                     fieldDefaults: {
                         labelAlign: 'left',
                         labelWidth: 150,
@@ -62,19 +65,13 @@ Ext.define('Tf.view.user.User', {
                                         }
                                     ]
                                 }
-                            ],
-
+                            ]
                         }
                     ]
                 }
 
             ],
             buttons:[
-                {
-                    scale: 'medium',
-                    text: 'User',
-                    handler: 'loadUserInfo'
-                },
                 {
                     scale: 'medium',
                     text: 'Go back to Login',
@@ -90,6 +87,9 @@ Ext.define('Tf.view.user.User', {
                 reference: 'activeOrder',
                 layout: 'center',
                 bodyPadding: '10',
+                listeners: {
+                    afterrender: 'loadActiveOrder'
+                },
                 fieldDefaults: {
                     labelAlign: 'left',
                     labelWidth: 150,
@@ -158,11 +158,6 @@ Ext.define('Tf.view.user.User', {
         }
         ],
             buttons: [
-                {
-                    scale: 'medium',
-                    text: 'Active',
-                    handler: 'loadActiveOrder'
-                },
                 {
                     scale: 'medium',
                     text: 'Go back to Login',

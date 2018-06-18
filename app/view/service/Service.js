@@ -22,6 +22,9 @@ Ext.define('Tf.view.service.Service', {
               reference: 'serviceForm',
               layout: 'center',
               bodyPadding: '10',
+              listeners: {
+                  afterrender: 'loadServiceInfo'
+              },
               fieldDefaults: {
                   labelAlign: 'left',
                   labelWidth: 150,
@@ -77,11 +80,6 @@ Ext.define('Tf.view.service.Service', {
           }
       ],
       buttons:[
-          {
-              scale: 'medium',
-              text: 'Service',
-              handler: 'loadServiceInfo'
-          },
           {
               scale: 'medium',
               text: 'Go back to Login',
@@ -206,7 +204,7 @@ Ext.define('Tf.view.service.Service', {
                                     {
                                         fieldLabel: 'Description',
                                         name: 'description'
-                                    }],
+                                    }]
                             }
                         ],
                         buttons:[
@@ -348,7 +346,7 @@ Ext.define('Tf.view.service.Service', {
                                         {
                                             fieldLabel: 'Description',
                                             name: 'description'
-                                        }],
+                                        }]
                                 }
                             ],
                             buttons:[
@@ -366,13 +364,9 @@ Ext.define('Tf.view.service.Service', {
 
 
                         }
-                    ],
+                    ]
                 }],
-            buttons:[ {
-                scale: 'medium',
-                text: 'Orders',
-                handler: 'loadCurrentOrders'
-            },
+            buttons:[
                 {
                     scale: 'medium',
                     text: 'Go back to Login',
