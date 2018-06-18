@@ -194,6 +194,7 @@ Ext.define('Tf.view.user.User', {
                     text: 'User Name',
                     flex: 1,
                     sortable: true,
+                    hidden: true,
                     dataIndex: 'userName'
                 },
 
@@ -212,6 +213,7 @@ Ext.define('Tf.view.user.User', {
                 text: 'Rating',
                 flex: 1,
                 sortable: true,
+                hidden: true,
                 dataIndex: 'rating'
             }, {
                 text: 'Description',
@@ -223,7 +225,7 @@ Ext.define('Tf.view.user.User', {
                 flex: 1,
                 sortable: true,
                 dataIndex: 'userId',
-                hidden: true,
+                hidden: true
             }]
 
         }
@@ -237,3 +239,4 @@ Ext.define('Tf.view.user.User', {
        ]
     }]
 });
+

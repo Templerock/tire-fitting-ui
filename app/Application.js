@@ -8,7 +8,9 @@ Ext.define('Tf.Application', {
   stores: [
     'Tf.store.User',
     'Tf.store.Order',
-    'Tf.store.Service'
+    'Tf.store.Service',
+      'Tf.store.Avail',
+      'Tf.store.Completed'
   ],
 
   launch: function () {

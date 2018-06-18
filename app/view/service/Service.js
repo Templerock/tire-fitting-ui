@@ -88,6 +88,7 @@ Ext.define('Tf.view.service.Service', {
       ]
   }, {
     title: 'Available Orders',
+        id: 'availableOrders',
         items: [
             {
                 xtype: 'form',
@@ -108,7 +109,7 @@ Ext.define('Tf.view.service.Service', {
                             {
                             columnWidth: 0.75,
                             xtype: 'gridpanel',
-                            store: 'service',
+                            store: 'avail',
                             title: 'Avalible order',
                             columns: [{
                                 text: 'Order ID',
@@ -230,6 +231,7 @@ Ext.define('Tf.view.service.Service', {
   },
         {
             title: 'Current Orders',
+            id: 'currentOrders',
             items: [
                 {
                     xtype: 'form',
@@ -250,7 +252,8 @@ Ext.define('Tf.view.service.Service', {
                                 {
                                     columnWidth: 0.75,
                                     xtype: 'gridpanel',
-                                    store: 'user',
+                                    store: 'completed',
+                                    // store: 'user',
                                     title: 'Current Orders',
                                     columns: [{
                                         text: 'Order ID',

@@ -63,6 +63,7 @@ Ext.define('Tf.view.user.ServiceController', {
                 console.log('The Order was accepted');
             }
         });
+        this.getView().setActiveTab(Ext.getCmp('currentOrders'));
         this.getView().reload();
     },
 
@@ -79,10 +80,11 @@ Ext.define('Tf.view.user.ServiceController', {
                 console.log('The Order was completed');
             }
         });
+        this.getView().setActiveTab(Ext.getCmp('availableOrders'));
         this.getView().reload();
     },
 
     onLoginClick: function () {
         this.redirectTo('login');
-    },
+    }
 });

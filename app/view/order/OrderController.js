@@ -43,6 +43,8 @@ Ext.define('Tf.view.order.OrderController', {
                 });
             }
         });
+        // Tf.view.user.User.getView();
+        // debugger;
         this.getView().close();
     }
 });
